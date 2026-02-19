@@ -89,4 +89,3 @@ iris_summary <- iris %>%
 
 # Menampilkan hasil akhir ringkasan
 iris_summary
-
