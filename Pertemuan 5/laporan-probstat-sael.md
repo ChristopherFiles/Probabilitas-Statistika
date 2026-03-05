@@ -25,11 +25,3 @@ Saya juga berasal dari Kota `Karawang` dan lahir pada tahun `2007`
 
 
 ## Saya akan menampilkan data Statistik Kasus Kriminal pada Negara US
-# Melihat data tertinggi per kategori
-apply(USArrests, 2, max)
-
-# Negara bagian dengan nilai tertinggi
-state_max <- sapply(names(USArrests), function(x) {
-  rownames(USArrests)[which.max(USArrests[[x]])]
-})
-state_max
