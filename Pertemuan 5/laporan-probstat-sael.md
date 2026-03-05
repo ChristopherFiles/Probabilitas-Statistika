@@ -1,26 +1,20 @@
 ---
-title: "laporan-probstat-sael"
-format: html
-editor: visual
+Author: "Misael Christopher Haryanto"
+Class: "TPL B1"
+NIM: "J0403251052"
 ---
 
-## Quarto
+## Halaman Pertama
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+Hi! ini adalah laporan pertama saya!
 
-## Running Code
+## Tentang Saya
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
-```
-
-You can add options to executable code like this
+Saya memiliki beberapa social media:
 
 ```{r}
-#| echo: false
-2 * 2
+instagram: @s4vss_
+youtube: SifuSael
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+Saya juga berasal dari Kota `Karawang` dan lahir pada tahun `2007`
