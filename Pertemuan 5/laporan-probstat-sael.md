@@ -22,3 +22,14 @@ youtube: SifuSael
 Saya juga berasal dari Kota `Karawang` dan lahir pada tahun `2007`
 
 <img src="https://image.idntimes.com/post/20251211/upload_a289e29f7387d9d1d72468a5b9912cb6_05e44561-9de0-4478-ae7d-15527b7253fa.jpeg?tr=w-1200" alt="Example" width="200" height="150">
+
+
+## Saya akan menampilkan data Statistik Kasus Kriminal pada Negara US
+# Melihat data tertinggi per kategori
+apply(USArrests, 2, max)
+
+# Negara bagian dengan nilai tertinggi
+state_max <- sapply(names(USArrests), function(x) {
+  rownames(USArrests)[which.max(USArrests[[x]])]
+})
+state_max
