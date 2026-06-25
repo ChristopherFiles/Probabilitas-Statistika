@@ -1,0 +1,15 @@
+---
+title: "Eksplorasi Dataset"
+output: html_document
+---
+
+```{r}
+df <- read.csv("../dataset/combined.csv")
+class(df$hindfoot_length)
+head(df, 6)
+str(df)
+dim(df)
+nrow(df)
+ncol(df)
+colnames(df)
+```

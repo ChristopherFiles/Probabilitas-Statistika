@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="id" xml:lang="id"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Probabilitas &amp; Statistika</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="probabilitas_files/libs/clipboard/clipboard.min.js"></script>
+<script src="probabilitas_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="probabilitas_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="probabilitas_files/libs/quarto-html/popper.min.js"></script>
+<script src="probabilitas_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="probabilitas_files/libs/quarto-html/anchor.min.js"></script>
+<link href="probabilitas_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="probabilitas_files/libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="probabilitas_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="probabilitas_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="probabilitas_files/libs/bootstrap/bootstrap-f57a4283c55baea7e81cb02c48ccb52d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Daftar Isi</h2>
+   
+  <ul>
+  <li><a href="#ruang-sampel" id="toc-ruang-sampel" class="nav-link active" data-scroll-target="#ruang-sampel"><span class="header-section-number">1</span> Ruang Sampel</a>
+  <ul class="collapse">
+  <li><a href="#pelemparan-tiga-koin" id="toc-pelemparan-tiga-koin" class="nav-link" data-scroll-target="#pelemparan-tiga-koin"><span class="header-section-number">1.1</span> Pelemparan Tiga Koin</a></li>
+  <li><a href="#pelemparan-dua-dadu" id="toc-pelemparan-dua-dadu" class="nav-link" data-scroll-target="#pelemparan-dua-dadu"><span class="header-section-number">1.2</span> Pelemparan Dua Dadu</a>
+  <ul class="collapse">
+  <li><a href="#kejadian-jumlah-kurang-dari-8" id="toc-kejadian-jumlah-kurang-dari-8" class="nav-link" data-scroll-target="#kejadian-jumlah-kurang-dari-8"><span class="header-section-number">1.2.1</span> Kejadian: Jumlah Kurang dari 8</a></li>
+  <li><a href="#kejadian-jumlah-genap" id="toc-kejadian-jumlah-genap" class="nav-link" data-scroll-target="#kejadian-jumlah-genap"><span class="header-section-number">1.2.2</span> Kejadian: Jumlah Genap</a></li>
+  <li><a href="#kejadian-jumlah-ganjil" id="toc-kejadian-jumlah-ganjil" class="nav-link" data-scroll-target="#kejadian-jumlah-ganjil"><span class="header-section-number">1.2.3</span> Kejadian: Jumlah Ganjil</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#latihan-1-pin-tiga-digit" id="toc-latihan-1-pin-tiga-digit" class="nav-link" data-scroll-target="#latihan-1-pin-tiga-digit"><span class="header-section-number">2</span> Latihan 1: PIN Tiga Digit</a>
+  <ul class="collapse">
+  <li><a href="#kejadian-minimal-satu-digit-bernilai-5" id="toc-kejadian-minimal-satu-digit-bernilai-5" class="nav-link" data-scroll-target="#kejadian-minimal-satu-digit-bernilai-5"><span class="header-section-number">2.1</span> Kejadian: Minimal Satu Digit Bernilai 5</a></li>
+  <li><a href="#kejadian-semua-digit-berbeda" id="toc-kejadian-semua-digit-berbeda" class="nav-link" data-scroll-target="#kejadian-semua-digit-berbeda"><span class="header-section-number">2.2</span> Kejadian: Semua Digit Berbeda</a></li>
+  </ul></li>
+  <li><a href="#latihan-2-status-router" id="toc-latihan-2-status-router" class="nav-link" data-scroll-target="#latihan-2-status-router"><span class="header-section-number">3</span> Latihan 2: Status Router</a>
+  <ul class="collapse">
+  <li><a href="#ruang-sampel-penuh" id="toc-ruang-sampel-penuh" class="nav-link" data-scroll-target="#ruang-sampel-penuh"><span class="header-section-number">3.1</span> Ruang Sampel Penuh</a></li>
+  <li><a href="#ruang-sampel-bersyarat-maksimal-1-router-gagal" id="toc-ruang-sampel-bersyarat-maksimal-1-router-gagal" class="nav-link" data-scroll-target="#ruang-sampel-bersyarat-maksimal-1-router-gagal"><span class="header-section-number">3.2</span> Ruang Sampel Bersyarat: Maksimal 1 Router Gagal</a></li>
+  <li><a href="#peluang-bersyarat-semua-router-sukses" id="toc-peluang-bersyarat-semua-router-sukses" class="nav-link" data-scroll-target="#peluang-bersyarat-semua-router-sukses"><span class="header-section-number">3.3</span> Peluang Bersyarat: Semua Router Sukses</a></li>
+  <li><a href="#verifikasi-peluang-murni-psemua-s" id="toc-verifikasi-peluang-murni-psemua-s" class="nav-link" data-scroll-target="#verifikasi-peluang-murni-psemua-s"><span class="header-section-number">3.4</span> Verifikasi: Peluang Murni P(semua S)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Probabilitas &amp; Statistika</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="ruang-sampel" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Ruang Sampel</h1>
+<section id="pelemparan-tiga-koin" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="pelemparan-tiga-koin"><span class="header-section-number">1.1</span> Pelemparan Tiga Koin</h2>
+<p>Misalkan sebuah koin dilempar sebanyak tiga kali. Setiap sisi koin memiliki dua kemungkinan hasil: <strong>A</strong> (Angka) atau <strong>G</strong> (Gambar). Ruang sampel dari percobaan ini adalah semua kombinasi yang mungkin terjadi.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>koin <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"G"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>ruang_sampel <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Koin1 =</span> koin,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Koin2 =</span> koin,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Koin3 =</span> koin</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>ruang_sampel</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Koin1 Koin2 Koin3
+1     A     A     A
+2     G     A     A
+3     A     G     A
+4     G     G     A
+5     A     A     G
+6     G     A     G
+7     A     G     G
+8     G     G     G</code></pre>
+</div>
+</div>
+<p>Total ruang sampel: <strong>8 kemungkinan</strong>.</p>
+</section>
+<section id="pelemparan-dua-dadu" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="pelemparan-dua-dadu"><span class="header-section-number">1.2</span> Pelemparan Dua Dadu</h2>
+<p>Dua buah dadu dilempar secara bersamaan. Kita susun seluruh ruang sampel beserta <strong>jumlah mata dadu</strong> yang muncul.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dadu <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>lempar_dadu <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dadu1 =</span> dadu,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dadu2 =</span> dadu</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>lempar_dadu<span class="sc">$</span>jumlah <span class="ot">&lt;-</span> lempar_dadu<span class="sc">$</span>dadu1 <span class="sc">+</span> lempar_dadu<span class="sc">$</span>dadu2</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>lempar_dadu</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   dadu1 dadu2 jumlah
+1      1     1      2
+2      2     1      3
+3      3     1      4
+4      4     1      5
+5      5     1      6
+6      6     1      7
+7      1     2      3
+8      2     2      4
+9      3     2      5
+10     4     2      6
+11     5     2      7
+12     6     2      8
+13     1     3      4
+14     2     3      5
+15     3     3      6
+16     4     3      7
+17     5     3      8
+18     6     3      9
+19     1     4      5
+20     2     4      6
+21     3     4      7
+22     4     4      8
+23     5     4      9
+24     6     4     10
+25     1     5      6
+26     2     5      7
+27     3     5      8
+28     4     5      9
+29     5     5     10
+30     6     5     11
+31     1     6      7
+32     2     6      8
+33     3     6      9
+34     4     6     10
+35     5     6     11
+36     6     6     12</code></pre>
+</div>
+</div>
+<section id="kejadian-jumlah-kurang-dari-8" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="kejadian-jumlah-kurang-dari-8"><span class="header-section-number">1.2.1</span> Kejadian: Jumlah Kurang dari 8</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>kurang_dari_8 <span class="ot">&lt;-</span> <span class="fu">subset</span>(lempar_dadu, lempar_dadu<span class="sc">$</span>jumlah <span class="sc">&lt;</span> <span class="dv">8</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>kurang_dari_8</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   dadu1 dadu2 jumlah
+1      1     1      2
+2      2     1      3
+3      3     1      4
+4      4     1      5
+5      5     1      6
+6      6     1      7
+7      1     2      3
+8      2     2      4
+9      3     2      5
+10     4     2      6
+11     5     2      7
+13     1     3      4
+14     2     3      5
+15     3     3      6
+16     4     3      7
+19     1     4      5
+20     2     4      6
+21     3     4      7
+25     1     5      6
+26     2     5      7
+31     1     6      7</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ks  <span class="ot">&lt;-</span> <span class="fu">nrow</span>(lempar_dadu)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sa  <span class="ot">&lt;-</span> <span class="fu">nrow</span>(kurang_dari_8)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>p_a <span class="ot">&lt;-</span> <span class="fu">round</span>(sa <span class="sc">/</span> ks, <span class="dv">2</span>) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Total ruang sampel: <strong>36</strong></li>
+<li>Kejadian jumlah &lt; 8: <strong>21</strong></li>
+<li>Peluang: <strong>58%</strong></li>
+</ul>
+</section>
+<section id="kejadian-jumlah-genap" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="kejadian-jumlah-genap"><span class="header-section-number">1.2.2</span> Kejadian: Jumlah Genap</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>genap <span class="ot">&lt;-</span> <span class="fu">subset</span>(lempar_dadu, lempar_dadu<span class="sc">$</span>jumlah <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>genap</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   dadu1 dadu2 jumlah
+1      1     1      2
+3      3     1      4
+5      5     1      6
+8      2     2      4
+10     4     2      6
+12     6     2      8
+13     1     3      4
+15     3     3      6
+17     5     3      8
+20     2     4      6
+22     4     4      8
+24     6     4     10
+25     1     5      6
+27     3     5      8
+29     5     5     10
+32     2     6      8
+34     4     6     10
+36     6     6     12</code></pre>
+</div>
+</div>
+<p>Jumlah kejadian dengan jumlah <strong>genap</strong>: <strong>18</strong></p>
+</section>
+<section id="kejadian-jumlah-ganjil" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="kejadian-jumlah-ganjil"><span class="header-section-number">1.2.3</span> Kejadian: Jumlah Ganjil</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ganjil <span class="ot">&lt;-</span> <span class="fu">subset</span>(lempar_dadu, lempar_dadu<span class="sc">$</span>jumlah <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ganjil</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   dadu1 dadu2 jumlah
+2      2     1      3
+4      4     1      5
+6      6     1      7
+7      1     2      3
+9      3     2      5
+11     5     2      7
+14     2     3      5
+16     4     3      7
+18     6     3      9
+19     1     4      5
+21     3     4      7
+23     5     4      9
+26     2     5      7
+28     4     5      9
+30     6     5     11
+31     1     6      7
+33     3     6      9
+35     5     6     11</code></pre>
+</div>
+</div>
+<p>Jumlah kejadian dengan jumlah <strong>ganjil</strong>: <strong>18</strong></p>
+<hr>
+</section>
+</section>
+</section>
+<section id="latihan-1-pin-tiga-digit" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Latihan 1: PIN Tiga Digit</h1>
+<p><strong>Soal:</strong> PIN terdiri dari 3 digit dengan aturan:</p>
+<ul>
+<li>Digit pertama: <strong>1 – 5</strong> (tidak boleh 0)</li>
+<li>Digit kedua &amp; ketiga: <strong>0 – 5</strong></li>
+</ul>
+<p>Total ruang sampel = 5 × 6 × 6 = <strong>180</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pin <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>ruang_sampel <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Pin1 =</span> <span class="fu">subset</span>(pin, pin <span class="sc">&gt;</span> <span class="dv">0</span>),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Pin2 =</span> pin,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Pin3 =</span> pin</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>ruang_sampel</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Pin1 Pin2 Pin3
+1      1    0    0
+2      2    0    0
+3      3    0    0
+4      4    0    0
+5      5    0    0
+6      1    1    0
+7      2    1    0
+8      3    1    0
+9      4    1    0
+10     5    1    0
+11     1    2    0
+12     2    2    0
+13     3    2    0
+14     4    2    0
+15     5    2    0
+16     1    3    0
+17     2    3    0
+18     3    3    0
+19     4    3    0
+20     5    3    0
+21     1    4    0
+22     2    4    0
+23     3    4    0
+24     4    4    0
+25     5    4    0
+26     1    5    0
+27     2    5    0
+28     3    5    0
+29     4    5    0
+30     5    5    0
+31     1    0    1
+32     2    0    1
+33     3    0    1
+34     4    0    1
+35     5    0    1
+36     1    1    1
+37     2    1    1
+38     3    1    1
+39     4    1    1
+40     5    1    1
+41     1    2    1
+42     2    2    1
+43     3    2    1
+44     4    2    1
+45     5    2    1
+46     1    3    1
+47     2    3    1
+48     3    3    1
+49     4    3    1
+50     5    3    1
+51     1    4    1
+52     2    4    1
+53     3    4    1
+54     4    4    1
+55     5    4    1
+56     1    5    1
+57     2    5    1
+58     3    5    1
+59     4    5    1
+60     5    5    1
+61     1    0    2
+62     2    0    2
+63     3    0    2
+64     4    0    2
+65     5    0    2
+66     1    1    2
+67     2    1    2
+68     3    1    2
+69     4    1    2
+70     5    1    2
+71     1    2    2
+72     2    2    2
+73     3    2    2
+74     4    2    2
+75     5    2    2
+76     1    3    2
+77     2    3    2
+78     3    3    2
+79     4    3    2
+80     5    3    2
+81     1    4    2
+82     2    4    2
+83     3    4    2
+84     4    4    2
+85     5    4    2
+86     1    5    2
+87     2    5    2
+88     3    5    2
+89     4    5    2
+90     5    5    2
+91     1    0    3
+92     2    0    3
+93     3    0    3
+94     4    0    3
+95     5    0    3
+96     1    1    3
+97     2    1    3
+98     3    1    3
+99     4    1    3
+100    5    1    3
+101    1    2    3
+102    2    2    3
+103    3    2    3
+104    4    2    3
+105    5    2    3
+106    1    3    3
+107    2    3    3
+108    3    3    3
+109    4    3    3
+110    5    3    3
+111    1    4    3
+112    2    4    3
+113    3    4    3
+114    4    4    3
+115    5    4    3
+116    1    5    3
+117    2    5    3
+118    3    5    3
+119    4    5    3
+120    5    5    3
+121    1    0    4
+122    2    0    4
+123    3    0    4
+124    4    0    4
+125    5    0    4
+126    1    1    4
+127    2    1    4
+128    3    1    4
+129    4    1    4
+130    5    1    4
+131    1    2    4
+132    2    2    4
+133    3    2    4
+134    4    2    4
+135    5    2    4
+136    1    3    4
+137    2    3    4
+138    3    3    4
+139    4    3    4
+140    5    3    4
+141    1    4    4
+142    2    4    4
+143    3    4    4
+144    4    4    4
+145    5    4    4
+146    1    5    4
+147    2    5    4
+148    3    5    4
+149    4    5    4
+150    5    5    4
+151    1    0    5
+152    2    0    5
+153    3    0    5
+154    4    0    5
+155    5    0    5
+156    1    1    5
+157    2    1    5
+158    3    1    5
+159    4    1    5
+160    5    1    5
+161    1    2    5
+162    2    2    5
+163    3    2    5
+164    4    2    5
+165    5    2    5
+166    1    3    5
+167    2    3    5
+168    3    3    5
+169    4    3    5
+170    5    3    5
+171    1    4    5
+172    2    4    5
+173    3    4    5
+174    4    4    5
+175    5    4    5
+176    1    5    5
+177    2    5    5
+178    3    5    5
+179    4    5    5
+180    5    5    5</code></pre>
+</div>
+</div>
+<section id="kejadian-minimal-satu-digit-bernilai-5" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="kejadian-minimal-satu-digit-bernilai-5"><span class="header-section-number">2.1</span> Kejadian: Minimal Satu Digit Bernilai 5</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>kejadian5 <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  ruang_sampel,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  ruang_sampel<span class="sc">$</span>Pin1 <span class="sc">==</span> <span class="dv">5</span> <span class="sc">|</span> ruang_sampel<span class="sc">$</span>Pin2 <span class="sc">==</span> <span class="dv">5</span> <span class="sc">|</span> ruang_sampel<span class="sc">$</span>Pin3 <span class="sc">==</span> <span class="dv">5</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>kejadian5</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Pin1 Pin2 Pin3
+5      5    0    0
+10     5    1    0
+15     5    2    0
+20     5    3    0
+25     5    4    0
+26     1    5    0
+27     2    5    0
+28     3    5    0
+29     4    5    0
+30     5    5    0
+35     5    0    1
+40     5    1    1
+45     5    2    1
+50     5    3    1
+55     5    4    1
+56     1    5    1
+57     2    5    1
+58     3    5    1
+59     4    5    1
+60     5    5    1
+65     5    0    2
+70     5    1    2
+75     5    2    2
+80     5    3    2
+85     5    4    2
+86     1    5    2
+87     2    5    2
+88     3    5    2
+89     4    5    2
+90     5    5    2
+95     5    0    3
+100    5    1    3
+105    5    2    3
+110    5    3    3
+115    5    4    3
+116    1    5    3
+117    2    5    3
+118    3    5    3
+119    4    5    3
+120    5    5    3
+125    5    0    4
+130    5    1    4
+135    5    2    4
+140    5    3    4
+145    5    4    4
+146    1    5    4
+147    2    5    4
+148    3    5    4
+149    4    5    4
+150    5    5    4
+151    1    0    5
+152    2    0    5
+153    3    0    5
+154    4    0    5
+155    5    0    5
+156    1    1    5
+157    2    1    5
+158    3    1    5
+159    4    1    5
+160    5    1    5
+161    1    2    5
+162    2    2    5
+163    3    2    5
+164    4    2    5
+165    5    2    5
+166    1    3    5
+167    2    3    5
+168    3    3    5
+169    4    3    5
+170    5    3    5
+171    1    4    5
+172    2    4    5
+173    3    4    5
+174    4    4    5
+175    5    4    5
+176    1    5    5
+177    2    5    5
+178    3    5    5
+179    4    5    5
+180    5    5    5</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>k5 <span class="ot">&lt;-</span> <span class="fu">nrow</span>(kejadian5)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>rs  <span class="ot">&lt;-</span> <span class="fu">nrow</span>(ruang_sampel)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>p5  <span class="ot">&lt;-</span> <span class="fu">round</span>(k5 <span class="sc">/</span> rs, <span class="dv">2</span>) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Kejadian: <strong>80</strong></li>
+<li>Peluang minimal satu digit = 5: <strong>44%</strong></li>
+</ul>
+</section>
+<section id="kejadian-semua-digit-berbeda" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="kejadian-semua-digit-berbeda"><span class="header-section-number">2.2</span> Kejadian: Semua Digit Berbeda</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>kejadian_beda <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  ruang_sampel,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  (Pin1 <span class="sc">!=</span> Pin2 <span class="sc">&amp;</span> Pin2 <span class="sc">!=</span> Pin3 <span class="sc">&amp;</span> Pin3 <span class="sc">!=</span> Pin1)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>kejadian_beda</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Pin1 Pin2 Pin3
+7      2    1    0
+8      3    1    0
+9      4    1    0
+10     5    1    0
+11     1    2    0
+13     3    2    0
+14     4    2    0
+15     5    2    0
+16     1    3    0
+17     2    3    0
+19     4    3    0
+20     5    3    0
+21     1    4    0
+22     2    4    0
+23     3    4    0
+25     5    4    0
+26     1    5    0
+27     2    5    0
+28     3    5    0
+29     4    5    0
+32     2    0    1
+33     3    0    1
+34     4    0    1
+35     5    0    1
+43     3    2    1
+44     4    2    1
+45     5    2    1
+47     2    3    1
+49     4    3    1
+50     5    3    1
+52     2    4    1
+53     3    4    1
+55     5    4    1
+57     2    5    1
+58     3    5    1
+59     4    5    1
+61     1    0    2
+63     3    0    2
+64     4    0    2
+65     5    0    2
+68     3    1    2
+69     4    1    2
+70     5    1    2
+76     1    3    2
+79     4    3    2
+80     5    3    2
+81     1    4    2
+83     3    4    2
+85     5    4    2
+86     1    5    2
+88     3    5    2
+89     4    5    2
+91     1    0    3
+92     2    0    3
+94     4    0    3
+95     5    0    3
+97     2    1    3
+99     4    1    3
+100    5    1    3
+101    1    2    3
+104    4    2    3
+105    5    2    3
+111    1    4    3
+112    2    4    3
+115    5    4    3
+116    1    5    3
+117    2    5    3
+119    4    5    3
+121    1    0    4
+122    2    0    4
+123    3    0    4
+125    5    0    4
+127    2    1    4
+128    3    1    4
+130    5    1    4
+131    1    2    4
+133    3    2    4
+135    5    2    4
+136    1    3    4
+137    2    3    4
+140    5    3    4
+146    1    5    4
+147    2    5    4
+148    3    5    4
+151    1    0    5
+152    2    0    5
+153    3    0    5
+154    4    0    5
+157    2    1    5
+158    3    1    5
+159    4    1    5
+161    1    2    5
+163    3    2    5
+164    4    2    5
+166    1    3    5
+167    2    3    5
+169    4    3    5
+171    1    4    5
+172    2    4    5
+173    3    4    5</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>kb  <span class="ot">&lt;-</span> <span class="fu">nrow</span>(kejadian_beda)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>pU  <span class="ot">&lt;-</span> <span class="fu">round</span>(kb <span class="sc">/</span> rs, <span class="dv">2</span>) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>Kejadian semua digit berbeda: <strong>100</strong></li>
+<li>Peluang semua digit berbeda: <strong>56%</strong></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="latihan-2-status-router" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Latihan 2: Status Router</h1>
+<p><strong>Soal:</strong> Terdapat 4 buah router, masing-masing berstatus:</p>
+<ul>
+<li><strong>S</strong> = Sukses</li>
+<li><strong>F</strong> = Gagal (Fail)</li>
+</ul>
+<section id="ruang-sampel-penuh" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="ruang-sampel-penuh"><span class="header-section-number">3.1</span> Ruang Sampel Penuh</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>router <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"S"</span>, <span class="st">"F"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>sampel_router <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Router1 =</span> router,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Router2 =</span> router,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Router3 =</span> router,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Router4 =</span> router</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>sampel_router</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Router1 Router2 Router3 Router4
+1        S       S       S       S
+2        F       S       S       S
+3        S       F       S       S
+4        F       F       S       S
+5        S       S       F       S
+6        F       S       F       S
+7        S       F       F       S
+8        F       F       F       S
+9        S       S       S       F
+10       F       S       S       F
+11       S       F       S       F
+12       F       F       S       F
+13       S       S       F       F
+14       F       S       F       F
+15       S       F       F       F
+16       F       F       F       F</code></pre>
+</div>
+</div>
+</section>
+<section id="ruang-sampel-bersyarat-maksimal-1-router-gagal" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="ruang-sampel-bersyarat-maksimal-1-router-gagal"><span class="header-section-number">3.2</span> Ruang Sampel Bersyarat: Maksimal 1 Router Gagal</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sampel_router1 <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  sampel_router,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  (Router1 <span class="sc">==</span> <span class="st">"F"</span>) <span class="sc">+</span> (Router2 <span class="sc">==</span> <span class="st">"F"</span>) <span class="sc">+</span> (Router3 <span class="sc">==</span> <span class="st">"F"</span>) <span class="sc">+</span> (Router4 <span class="sc">==</span> <span class="st">"F"</span>) <span class="sc">&lt;=</span> <span class="dv">1</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>sampel_router1</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Router1 Router2 Router3 Router4
+1       S       S       S       S
+2       F       S       S       S
+3       S       F       S       S
+5       S       S       F       S
+9       S       S       S       F</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(sampel_router1)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+</section>
+<section id="peluang-bersyarat-semua-router-sukses" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="peluang-bersyarat-semua-router-sukses"><span class="header-section-number">3.3</span> Peluang Bersyarat: Semua Router Sukses</h2>
+<blockquote class="blockquote">
+<p><strong>P(semua S | maksimal 1 gagal)</strong></p>
+</blockquote>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tidak_ada_gagal <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  sampel_router,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  (Router1 <span class="sc">==</span> <span class="st">"S"</span>) <span class="sc">&amp;</span> (Router2 <span class="sc">==</span> <span class="st">"S"</span>) <span class="sc">&amp;</span> (Router3 <span class="sc">==</span> <span class="st">"S"</span>) <span class="sc">&amp;</span> (Router4 <span class="sc">==</span> <span class="st">"S"</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>tidak_ada_gagal</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Router1 Router2 Router3 Router4
+1       S       S       S       S</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pembagi = ruang sampel bersyarat</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>peluang_bersyarat <span class="ot">&lt;-</span> <span class="fu">nrow</span>(tidak_ada_gagal) <span class="sc">/</span> <span class="fu">nrow</span>(sampel_router1)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>peluang_bersyarat</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2</code></pre>
+</div>
+</div>
+<p><strong>Peluang bersyarat P(semua S | maks 1 gagal) = 0.2</strong></p>
+</section>
+<section id="verifikasi-peluang-murni-psemua-s" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="verifikasi-peluang-murni-psemua-s"><span class="header-section-number">3.4</span> Verifikasi: Peluang Murni P(semua S)</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>hasil <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"S"</span>, <span class="st">"F"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>ruang_sampel <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">cek1 =</span> hasil,</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">cek2 =</span> hasil,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">cek3 =</span> hasil,</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">cek4 =</span> hasil</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>jumlah_F <span class="ot">&lt;-</span> (ruang_sampel<span class="sc">$</span>cek1 <span class="sc">==</span> <span class="st">"F"</span>) <span class="sc">+</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  (ruang_sampel<span class="sc">$</span>cek2 <span class="sc">==</span> <span class="st">"F"</span>) <span class="sc">+</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  (ruang_sampel<span class="sc">$</span>cek3 <span class="sc">==</span> <span class="st">"F"</span>) <span class="sc">+</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  (ruang_sampel<span class="sc">$</span>cek4 <span class="sc">==</span> <span class="st">"F"</span>)</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>ruang_sampel_bersyarat <span class="ot">&lt;-</span> ruang_sampel[jumlah_F <span class="sc">&lt;=</span> <span class="dv">1</span>, ]</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>ruang_sampel_bersyarat</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  cek1 cek2 cek3 cek4
+1    S    S    S    S
+2    F    S    S    S
+3    S    F    S    S
+5    S    S    F    S
+9    S    S    S    F</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(ruang_sampel_bersyarat)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>total <span class="ot">&lt;-</span> <span class="fu">nrow</span>(ruang_sampel)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>tidak_ada_gagal <span class="ot">&lt;-</span> ruang_sampel[</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  ruang_sampel<span class="sc">$</span>cek1 <span class="sc">==</span> <span class="st">"S"</span> <span class="sc">&amp;</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    ruang_sampel<span class="sc">$</span>cek2 <span class="sc">==</span> <span class="st">"S"</span> <span class="sc">&amp;</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    ruang_sampel<span class="sc">$</span>cek3 <span class="sc">==</span> <span class="st">"S"</span> <span class="sc">&amp;</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    ruang_sampel<span class="sc">$</span>cek4 <span class="sc">==</span> <span class="st">"S"</span>,</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Peluang murni dari ruang sampel penuh: P(semua S) = 1/16</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>peluang_murni <span class="ot">&lt;-</span> <span class="fu">nrow</span>(tidak_ada_gagal) <span class="sc">/</span> total</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>peluang_murni</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0625</code></pre>
+</div>
+</div>
+<p><strong>Peluang murni P(semua S) = 0.0625</strong> (= 1/16)</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Disalin!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Disalin!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

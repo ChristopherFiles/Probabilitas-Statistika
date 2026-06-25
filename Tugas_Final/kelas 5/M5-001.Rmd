@@ -1,0 +1,37 @@
+---
+title: "Dataset State.x77"
+output: html_document
+---
+
+```{r, attr.source='.numberLines', comment=NA, eval=TRUE, results='hide'}
+df <- state.x77
+df <- data.frame(df)
+```
+
+```{r, attr.source='.numberLines', comment=NA, eval=TRUE}
+str(df)
+```
+
+<h5> Analisa Populasi </h5>
+
+```{r, attr.source='.numberLines', comment=NA, eval=TRUE, results='hide'}
+maxPop <- which.max(df$Population)
+namaNegaraBagian <- rownames(df)
+```
+
+Negara Bagian dengan jumlah penduduk terbanyak:
+```{r, attr.source='.numberLines', comment=NA, eval=TRUE}
+namaNegaraBagian[maxPop]
+```
+dengan jumlah penduduk:
+
+```{r, comment=NA}
+print((df$Population)[maxPop])
+```
+
+#### **Tingkat Pendapatan: **
+
+```{r, comment=NA}
+datasetbaru <- read.csv("../dataset/combined.csv")
+str(datasetbaru)
+```

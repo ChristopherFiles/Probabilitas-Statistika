@@ -1,0 +1,56 @@
+---
+title: "Dasar Teori Kemungkinan"
+output: html_document
+---
+
+```{r, eval=TRUE, warning=FALSE, comment=NA, out.width='50%', fig.align='center'}
+library(ggplot2)
+
+df <- iris
+
+ggplot(data = df, aes(x = Sepal.Length, 
+                      y = Sepal.Width, 
+                      color = Species)) +
+  geom_point() +
+  theme_classic() +
+  labs(
+    title = "Hubungan Sepal Length dan Sepal Width",
+    x = "Panjang Sepal (cm)",
+    y = "Lebar Sepal (cm)",
+    color = "Species"
+  )
+```
+
+---
+
+```{r}
+lempar1 <- sample(c("H", "T"), size = 10, replace = TRUE)
+print(lempar1)
+```
+
+```{r}
+lempar1 <- sample(c("H", "T"), size = 10, replace = TRUE)
+print(lempar1)
+l1 <- prop.table(table(lempar1)) * 100
+print(l1)
+```
+
+```{r}
+set.seed(12)
+lempar1 <- sample(c("H", "T"), size = 10, replace = TRUE)
+print(lempar1)
+```
+
+```{r}
+set.seed(12)
+lempar1 <- sample(c("H", "T"), size = 10, replace = TRUE)
+print(lempar1)
+```
+
+```{r}
+set.seed(12)
+lempar1 <- sample(c("H", "T"), size = 10, replace = TRUE)
+print(lempar1)
+l1.2 <- table(lempar1)
+print(l1.2)
+```

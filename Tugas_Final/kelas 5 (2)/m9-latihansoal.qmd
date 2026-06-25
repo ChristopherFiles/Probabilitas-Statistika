@@ -1,0 +1,229 @@
+---
+title: "Latihan Soal"
+lang: id
+format:
+  html:
+    toc: true
+    toc-title: "Daftar Isi"
+    toc-depth: 3
+    number-sections: true
+    theme: cosmo
+    code-fold: false
+    highlight-style: github
+    df-print: kable
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Pendahuluan
+
+Soal ini mengaplikasikan **Teorema Bayes** sebagai
+perluasan dari konsep **Probabilitas Bersyarat** (*Conditional Probability*).
+
+### Landasan Teori
+
+**Probabilitas bersyarat** didefinisikan sebagai:
+
+$$P(A \mid B) = \frac{P(A \cap B)}{P(B)}$$
+
+**Teorema Bayes** membalik kondisi tersebut. Jika kita mengetahui
+$P(D \mid A)$ tetapi ingin mencari $P(A \mid D)$, maka:
+
+$$\boxed{P(A \mid D) = \frac{P(D \mid A) \cdot P(A)}{P(D)}}$$
+
+Nilai $P(D)$ dihitung menggunakan **Hukum Total Probabilitas**:
+
+$$P(D) = P(D \mid A) \cdot P(A) + P(D \mid A^c) \cdot P(A^c)$$
+
+sehingga bentuk lengkap Teorema Bayes untuk dua kejadian adalah:
+
+$$P(A \mid D) = \frac{P(D \mid A) \cdot P(A)}{P(D \mid A) \cdot P(A) + P(D \mid A^c) \cdot P(A^c)}$$
+
+---
+
+## Soal 1: Sistem Deteksi Bug Otomatis
+
+### Permasalahan
+
+Sebuah perusahaan software memiliki sistem deteksi bug otomatis pada aplikasi
+yang sedang dikembangkan.
+
+::: {.callout-note title="Diketahui"}
+- $P(B) = 0{,}05$ — 5% dari seluruh modul program mengandung bug kritis
+- $P(D \mid B) = 0{,}90$ — Jika modul memiliki bug kritis, sistem mendeteksinya
+  dengan benar sebesar 90% (**true positive**)
+- $P(D \mid B^c) = 0{,}10$ — Jika modul **tidak** memiliki bug, sistem masih
+  memberikan alarm palsu sebesar 10% (**false positive**)
+:::
+
+::: {.callout-important title="Ditanya"}
+Jika suatu modul diberi tanda *"terdeteksi bug"* oleh sistem, berapakah
+probabilitas bahwa modul tersebut **benar-benar** memiliki bug kritis?
+
+$$P(B \mid D) = ?$$
+:::
+
+### Penyelesaian
+
+**Definisi kejadian:**
+
+| Simbol | Makna |
+|--------|-------|
+| $B$ | Modul memiliki bug kritis |
+| $B^c$ | Modul **tidak** memiliki bug kritis |
+| $D$ | Sistem mendeteksi bug (memberi tanda) |
+
+**Langkah 1: Hukum Total Probabilitas:**
+
+$$P(D) = P(D \mid B) \cdot P(B) + P(D \mid B^c) \cdot P(B^c)$$
+$$P(D) = 0{,}90 \times 0{,}05 + 0{,}10 \times 0{,}95$$
+$$P(D) = 0{,}045 + 0{,}095 = 0{,}14$$
+
+**Langkah 2: Teorema Bayes:**
+
+$$P(B \mid D) = \frac{P(D \mid B) \cdot P(B)}{P(D)} = \frac{0{,}90 \times 0{,}05}{0{,}14} = \frac{0{,}045}{0{,}14} \approx 0{,}3214$$
+
+### Implementasi R
+
+```{r}
+# --- SOAL 1: Sistem Deteksi Bug Otomatis ---
+
+# Nilai yang diketahui
+p_B    <- 0.05          # P(B)   = 5% modul ada bug kritis
+p_Bc   <- 1 - p_B       # P(B^c) = 95% modul tidak ada bug
+p_D_B  <- 0.90          # P(D|B)   = true positive rate
+p_D_Bc <- 0.10          # P(D|B^c) = false positive rate
+
+# Langkah 1: Hukum Total Probabilitas — P(D)
+p_D <- (p_D_B * p_B) + (p_D_Bc * p_Bc)
+cat("P(D) =", p_D_B, "×", p_B, "+", p_D_Bc, "×", p_Bc, "=", p_D, "\n")
+
+# Langkah 2: Teorema Bayes — P(B|D)
+p_B_D <- (p_D_B * p_B) / p_D
+cat("P(B|D) =", round(p_D_B * p_B, 4), "/", p_D, "=", round(p_B_D, 4), "\n")
+cat("P(B|D) ≈", round(p_B_D * 100, 2), "%\n")
+```
+
+### Hasil & Interpretasi
+
+::: {.callout-tip title="Jawaban Soal 1"}
+$$P(B \mid D) = \frac{0{,}045}{0{,}14} \approx \mathbf{0{,}3214 \ (32{,}14\%)}$$
+
+Meskipun sistem mampu mendeteksi bug dengan akurasi 90%, probabilitas bahwa
+modul yang *ditandai bug* benar-benar mengandung bug kritis hanya sekitar
+**32,14%**.
+
+Fenomena ini dikenal sebagai **base rate neglect**: prevalensi bug yang sangat
+rendah (5%) menyebabkan jumlah alarm palsu dari 95% modul yang tidak bermasalah
+secara absolut jauh lebih besar dari deteksi yang benar.
+:::
+
+---
+
+## Soal 2: Sistem Klasifikasi Spam Email
+
+### Permasalahan
+
+Sebuah sistem email menggunakan model klasifikasi spam.
+
+::: {.callout-note title="Diketahui"}
+- $P(S) = 0{,}20$ — 20% email adalah spam
+- $P(D \mid S) = 0{,}90$ — Jika email spam, sistem mendeteksi dengan benar = 90%
+- $P(D \mid S^c) = 0{,}15$ — Jika email **bukan** spam, sistem salah mendeteksi
+  (*false positive*) = 15%
+:::
+
+::: {.callout-important title="Ditanya"}
+Jika sebuah email terdeteksi sebagai spam, berapa probabilitas bahwa email
+tersebut **benar-benar** spam?
+
+$$P(S \mid D) = ?$$
+:::
+
+### Penyelesaian
+
+**Definisi kejadian:**
+
+| Simbol | Makna |
+|--------|-------|
+| $S$ | Email adalah spam |
+| $S^c$ | Email **bukan** spam |
+| $D$ | Sistem mendeteksi sebagai spam |
+
+**Langkah 1: Hukum Total Probabilitas:**
+
+$$P(D) = P(D \mid S) \cdot P(S) + P(D \mid S^c) \cdot P(S^c)$$
+$$P(D) = 0{,}90 \times 0{,}20 + 0{,}15 \times 0{,}80$$
+$$P(D) = 0{,}18 + 0{,}12 = 0{,}30$$
+
+**Langkah 2: Teorema Bayes:**
+
+$$P(S \mid D) = \frac{P(D \mid S) \cdot P(S)}{P(D)} = \frac{0{,}90 \times 0{,}20}{0{,}30} = \frac{0{,}18}{0{,}30} = 0{,}60$$
+
+### Implementasi R
+
+```{r}
+# --- SOAL 2: Sistem Klasifikasi Spam Email ---
+
+# Nilai yang diketahui
+p_S    <- 0.20          # P(S)   = 20% email adalah spam
+p_Sc   <- 1 - p_S       # P(S^c) = 80% email bukan spam
+p_D_S  <- 0.90          # P(D|S)   = true positive rate
+p_D_Sc <- 0.15          # P(D|S^c) = false positive rate
+
+# Langkah 1: Hukum Total Probabilitas — P(D)
+p_D2 <- (p_D_S * p_S) + (p_D_Sc * p_Sc)
+cat("P(D) =", p_D_S, "×", p_S, "+", p_D_Sc, "×", p_Sc, "=", p_D2, "\n")
+
+# Langkah 2: Teorema Bayes — P(S|D)
+p_S_D <- (p_D_S * p_S) / p_D2
+cat("P(S|D) =", round(p_D_S * p_S, 4), "/", p_D2, "=", round(p_S_D, 4), "\n")
+cat("P(S|D) ≈", round(p_S_D * 100, 2), "%\n")
+```
+
+### Hasil & Interpretasi
+
+::: {.callout-tip title="Jawaban Soal 2"}
+$$P(S \mid D) = \frac{0{,}18}{0{,}30} = \mathbf{0{,}60 \ (60\%)}$$
+
+Jika sebuah email terdeteksi sebagai spam, probabilitas bahwa email tersebut
+memang spam adalah **60%**. Artinya **40% email yang ditandai spam sebenarnya
+bukan spam** (*false positive*).
+
+Tingkat false positive 15% yang relatif besar terhadap prevalensi spam 20%
+menurunkan presisi detektor secara signifikan.
+:::
+
+---
+
+## Ringkasan
+
+```{r}
+#| echo: false
+
+# Tampilkan tabel ringkasan hasil kedua soal
+hasil <- data.frame(
+  Soal = c("Soal 1: Deteksi Bug", "Soal 2: Klasifikasi Spam"),
+  `P(Prior)` = c("P(Bug) = 5%", "P(Spam) = 20%"),
+  `True Positive` = c("90%", "90%"),
+  `False Positive` = c("10%", "15%"),
+  `P(D)` = c("0.14", "0.30"),
+  Jawaban = c("P(B|D) ≈ 32.14%", "P(S|D) = 60.00%"),
+  check.names = FALSE
+)
+knitr::kable(hasil, align = "lccccr",
+             caption = "Tabel Ringkasan Hasil Latihan Soal Pertemuan 9")
+```
+
+::: {.callout-caution title="Poin Kunci: Pengaruh Base Rate"}
+Kedua soal menunjukkan bahwa **probabilitas prior (base rate)** sangat
+memengaruhi hasil Teorema Bayes. Meskipun akurasi sistem sama (90%):
+
+- Soal 1: prior rendah (5%) menghasilkan posterior rendah (32%)
+- Soal 2: prior lebih tinggi (20%) menghasilkan posterior lebih tinggi (60%)
+
+Semakin jarang suatu kejadian terjadi, semakin besar kemungkinan deteksi
+positif adalah alarm palsu.
+:::

@@ -1,0 +1,254 @@
+---
+title: "Probabilitas & Statistika"
+format:
+  html:
+    toc: true
+    toc-title: "Daftar Isi"
+    number-sections: true
+    theme: cosmo
+    code-fold: false
+    highlight-style: github
+lang: id
+---
+
+# Ruang Sampel
+
+## Pelemparan Tiga Koin
+
+Misalkan sebuah koin dilempar sebanyak tiga kali. Setiap sisi koin memiliki dua kemungkinan hasil: **A** (Angka) atau **G** (Gambar). Ruang sampel dari percobaan ini adalah semua kombinasi yang mungkin terjadi.
+
+```{r}
+#| label: ruang-sampel-koin
+#| echo: true
+
+koin <- c("A", "G")
+ruang_sampel <- expand.grid(
+  Koin1 = koin,
+  Koin2 = koin,
+  Koin3 = koin
+)
+ruang_sampel
+```
+
+Total ruang sampel: **`r nrow(expand.grid(Koin1 = c("A","G"), Koin2 = c("A","G"), Koin3 = c("A","G")))` kemungkinan**.
+
+## Pelemparan Dua Dadu
+
+Dua buah dadu dilempar secara bersamaan. Kita susun seluruh ruang sampel beserta **jumlah mata dadu** yang muncul.
+
+```{r}
+#| label: ruang-sampel-dadu
+#| echo: true
+
+dadu <- c(1, 2, 3, 4, 5, 6)
+lempar_dadu <- expand.grid(
+  dadu1 = dadu,
+  dadu2 = dadu
+)
+lempar_dadu$jumlah <- lempar_dadu$dadu1 + lempar_dadu$dadu2
+lempar_dadu
+```
+
+### Kejadian: Jumlah Kurang dari 8
+
+```{r}
+#| label: kurang-dari-8
+#| echo: true
+
+kurang_dari_8 <- subset(lempar_dadu, lempar_dadu$jumlah < 8)
+kurang_dari_8
+
+ks  <- nrow(lempar_dadu)
+sa  <- nrow(kurang_dari_8)
+p_a <- round(sa / ks, 2) * 100
+```
+
+- Total ruang sampel: **`r ks`**
+- Kejadian jumlah < 8: **`r sa`**
+- Peluang: **`r p_a`%**
+
+### Kejadian: Jumlah Genap
+
+```{r}
+#| label: jumlah-genap
+#| echo: true
+
+genap <- subset(lempar_dadu, lempar_dadu$jumlah %% 2 == 0)
+genap
+```
+
+Jumlah kejadian dengan jumlah **genap**: **`r nrow(subset(lempar_dadu, lempar_dadu$jumlah %% 2 == 0))`**
+
+### Kejadian: Jumlah Ganjil
+
+```{r}
+#| label: jumlah-ganjil
+#| echo: true
+
+ganjil <- subset(lempar_dadu, lempar_dadu$jumlah %% 2 == 1)
+ganjil
+```
+
+Jumlah kejadian dengan jumlah **ganjil**: **`r nrow(subset(lempar_dadu, lempar_dadu$jumlah %% 2 == 1))`**
+
+---
+
+# Latihan 1: PIN Tiga Digit
+
+**Soal:** PIN terdiri dari 3 digit dengan aturan:
+
+- Digit pertama: **1 – 5** (tidak boleh 0)
+- Digit kedua & ketiga: **0 – 5**
+
+Total ruang sampel = 5 × 6 × 6 = **180**
+
+```{r}
+#| label: pin-ruang-sampel
+#| echo: true
+
+pin <- c(0, 1, 2, 3, 4, 5)
+ruang_sampel <- expand.grid(
+  Pin1 = subset(pin, pin > 0),
+  Pin2 = pin,
+  Pin3 = pin
+)
+ruang_sampel
+```
+
+## Kejadian: Minimal Satu Digit Bernilai 5
+
+```{r}
+#| label: pin-angka-5
+#| echo: true
+
+kejadian5 <- subset(
+  ruang_sampel,
+  ruang_sampel$Pin1 == 5 | ruang_sampel$Pin2 == 5 | ruang_sampel$Pin3 == 5
+)
+kejadian5
+
+k5 <- nrow(kejadian5)
+rs  <- nrow(ruang_sampel)
+p5  <- round(k5 / rs, 2) * 100
+```
+
+- Kejadian: **`r k5`**
+- Peluang minimal satu digit = 5: **`r p5`%**
+
+## Kejadian: Semua Digit Berbeda
+
+```{r}
+#| label: pin-beda
+#| echo: true
+
+kejadian_beda <- subset(
+  ruang_sampel,
+  (Pin1 != Pin2 & Pin2 != Pin3 & Pin3 != Pin1)
+)
+kejadian_beda
+
+kb  <- nrow(kejadian_beda)
+pU  <- round(kb / rs, 2) * 100
+```
+
+- Kejadian semua digit berbeda: **`r kb`**
+- Peluang semua digit berbeda: **`r pU`%**
+
+---
+
+# Latihan 2: Status Router
+
+**Soal:** Terdapat 4 buah router, masing-masing berstatus:
+
+- **S** = Sukses
+- **F** = Gagal (Fail)
+
+## Ruang Sampel Penuh
+
+```{r}
+#| label: router-sampel
+#| echo: true
+
+router <- c("S", "F")
+sampel_router <- expand.grid(
+  Router1 = router,
+  Router2 = router,
+  Router3 = router,
+  Router4 = router
+)
+sampel_router
+```
+
+## Ruang Sampel Bersyarat: Maksimal 1 Router Gagal
+
+```{r}
+#| label: router-bersyarat
+#| echo: true
+
+sampel_router1 <- subset(
+  sampel_router,
+  (Router1 == "F") + (Router2 == "F") + (Router3 == "F") + (Router4 == "F") <= 1
+)
+sampel_router1
+nrow(sampel_router1)
+```
+
+## Peluang Bersyarat: Semua Router Sukses
+
+> **P(semua S | maksimal 1 gagal)**
+
+```{r}
+#| label: router-semua-sukses-bersyarat
+#| echo: true
+
+tidak_ada_gagal <- subset(
+  sampel_router,
+  (Router1 == "S") & (Router2 == "S") & (Router3 == "S") & (Router4 == "S")
+)
+tidak_ada_gagal
+
+# Pembagi = ruang sampel bersyarat
+peluang_bersyarat <- nrow(tidak_ada_gagal) / nrow(sampel_router1)
+peluang_bersyarat
+```
+
+**Peluang bersyarat P(semua S | maks 1 gagal) = `r peluang_bersyarat`**
+
+## Verifikasi: Peluang Murni P(semua S)
+
+```{r}
+#| label: router-verifikasi
+#| echo: true
+
+hasil <- c("S", "F")
+ruang_sampel <- expand.grid(
+  cek1 = hasil,
+  cek2 = hasil,
+  cek3 = hasil,
+  cek4 = hasil
+)
+
+jumlah_F <- (ruang_sampel$cek1 == "F") +
+  (ruang_sampel$cek2 == "F") +
+  (ruang_sampel$cek3 == "F") +
+  (ruang_sampel$cek4 == "F")
+
+ruang_sampel_bersyarat <- ruang_sampel[jumlah_F <= 1, ]
+ruang_sampel_bersyarat
+nrow(ruang_sampel_bersyarat)
+
+total <- nrow(ruang_sampel)
+
+tidak_ada_gagal <- ruang_sampel[
+  ruang_sampel$cek1 == "S" &
+    ruang_sampel$cek2 == "S" &
+    ruang_sampel$cek3 == "S" &
+    ruang_sampel$cek4 == "S",
+]
+
+# Peluang murni dari ruang sampel penuh: P(semua S) = 1/16
+peluang_murni <- nrow(tidak_ada_gagal) / total
+peluang_murni
+```
+
+**Peluang murni P(semua S) = `r peluang_murni`** (= 1/16)
